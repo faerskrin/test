@@ -1,6 +1,5 @@
-package com.example.mediawithwear;
+package com.example.mediawithwear.ui.tab;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,34 +8,39 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.mediawithwear.ui.tab.Activitytab;
+import com.example.mediawithwear.AdapterNext;
+import com.example.mediawithwear.App;
+import com.example.mediawithwear.Content;
+import com.example.mediawithwear.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class Activitynext extends AppCompatActivity {
+public class Activitytab extends AppCompatActivity {
 
-    @BindView(R.id.toolbar_next)
+    @BindView(R.id.toolbar_tab)
     Toolbar toolbar;
-    AdapterNext adapter;
-    @BindView(R.id.recyc_next)
-    RecyclerView recyc;
     SearchView searchView;
+    AdapterNext adapter;
+    @BindView(R.id.view_pager)
+    ViewPager vp;
+    @BindView(R.id.tabs)
+    TabLayout tabs;
 
+        List<String> Groups = new ArrayList<>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search,menu);
         MenuItem sr = menu.findItem(R.id.search);
         searchView = (SearchView) sr.getActionView();
-        searchView.setQueryHint("Поиск");
+        searchView.setQueryHint("Поиск. . .");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -46,39 +50,34 @@ public class Activitynext extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 newText = newText.toLowerCase();
-                List<Content> contents = new ArrayList<>();
+                List<Content> c1 = new ArrayList<>();
 
                 for (Content content: App.dm.getCont())
                 {
-                    String name = content.getNazv().toLowerCase();
+                    String name = content.getNazv();
                     if (name.contains(newText))
                     {
-                        contents.add(content);
+                        c1.add(content);
                     }
-
                 }
-                adapter.setSearch(contents);
-
+              // adapter.setSearch(c1);
                 return false;
             }
         });
-        return true;
-    }
 
-    @OnClick(R.id.button_tab)
-    void doTab(){
-        Intent intent = new Intent(this, Activitytab.class);
-        startActivity(intent);
+        return true;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_next);
+        setContentView(R.layout.activity_tab);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        recyc.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AdapterNext(App.dm.getCont());
-        recyc.setAdapter(adapter);
+        Groups.add("Первый");
+        Groups.add("Второй");
+        Groups.add("Третий");
+        vp.setAdapter(new GroupVp(getSupportFragmentManager(),Groups));
+        tabs.setupWithViewPager(vp);
     }
 }

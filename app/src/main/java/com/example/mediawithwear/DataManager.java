@@ -23,19 +23,19 @@ public class DataManager {
 
     private  void setCONTENT(){
 
-        cont.add(new Content("HUI"));
-        cont.add(new Content("dsa"));
-        cont.add(new Content("czx"));
-        cont.add(new Content("vc"));
-        cont.add(new Content("hkg"));
-        cont.add(new Content("bvc"));
-        cont.add(new Content("iyu"));
-        cont.add(new Content("m,."));
-        cont.add(new Content("khj"));
-        cont.add(new Content("rty"));
-        cont.add(new Content("3543"));
-        cont.add(new Content("bnv"));
-        cont.add(new Content("xvcx"));
+        cont.add(new Content("HUI","Первый"));
+        cont.add(new Content("dsa","Второй"));
+        cont.add(new Content("czx","Первый"));
+        cont.add(new Content("vc","Первый"));
+        cont.add(new Content("hkg","Первый"));
+        cont.add(new Content("bvc","Третий"));
+        cont.add(new Content("iyu","Первый"));
+        cont.add(new Content("m,.","Второй"));
+        cont.add(new Content("khj","Первый"));
+        cont.add(new Content("rty","Первый"));
+        cont.add(new Content("3543","Третий"));
+        cont.add(new Content("bnv","Первый"));
+        cont.add(new Content("xvcx","Первый"));
 
     }
 
@@ -49,5 +49,20 @@ public class DataManager {
 
     public List<UrlModel> getUrl() {
         return url;
+    }
+
+
+    public List<Content> getContForGroup(String group) {
+
+        List<Content> contents = new ArrayList<>();
+        for (Content content: getCont())
+        {
+            if (content.getGroup().contains(group))
+            {
+                contents.add(content);
+            }
+        }
+        return contents;
+
     }
 }
