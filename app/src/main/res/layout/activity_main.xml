@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="?attr/actionBarSize"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyc"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="31231"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:text="3123123"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:id="@+id/back_music"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/ic_skip_previous_black_24dp"
+            android:background="@drawable/shape"/>
+
+        <ImageButton
+            android:id="@+id/play_music"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:background="@drawable/shape"/>
+
+        <ImageButton
+            android:id="@+id/next_music"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_skip_next_black_24dp"
+            android:background="@drawable/shape"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_butt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+    <ImageButton
+        android:id="@+id/pause_music"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="485dp"
+        android:layout_marginLeft="175dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_pause_black_24dp"
+        android:background="@drawable/shape" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
