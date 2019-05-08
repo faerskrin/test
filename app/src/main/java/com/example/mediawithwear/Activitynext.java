@@ -1,9 +1,14 @@
 package com.example.mediawithwear;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +34,12 @@ public class Activitynext extends AppCompatActivity {
     @BindView(R.id.recyc_next)
     RecyclerView recyc;
     SearchView searchView;
+    @BindView(R.id.checkbox_next)
+    CheckBox checkBox;
+
+    SharedPreferences sp;
+
+
 
 
     @Override
@@ -71,6 +82,9 @@ public class Activitynext extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,5 +94,39 @@ public class Activitynext extends AppCompatActivity {
         recyc.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterNext(App.dm.getCont());
         recyc.setAdapter(adapter);
+
+        sp = getSharedPreferences("MY_DATA", Context.MODE_PRIVATE);
+        Boolean state = sp.getBoolean("STATE", false);
+
+
+        if (state)
+        {
+            checkBox.setChecked(true);
+        }
+        else  {checkBox.setChecked(false);}
+
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (checkBox.isChecked()) {
+                    startService(new Intent(Activitynext.this, Alarm.class));
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean("STATE",true);
+                    editor.apply();
+                }
+                else {
+                    stopService(new Intent(Activitynext.this, Alarm.class));
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean("STATE",false);
+                    editor.apply();
+                }
+            }
+        });
+
+
+
+
     }
 }

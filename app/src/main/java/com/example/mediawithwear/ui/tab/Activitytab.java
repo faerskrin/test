@@ -77,7 +77,7 @@ public class Activitytab extends AppCompatActivity {
         Groups.add("Первый");
         Groups.add("Второй");
         Groups.add("Третий");
-        vp.setAdapter(new GroupVp(getSupportFragmentManager(),Groups));
+        vp.setAdapter(new GroupVP(getSupportFragmentManager(),Groups));
         tabs.setupWithViewPager(vp);
     }
 }

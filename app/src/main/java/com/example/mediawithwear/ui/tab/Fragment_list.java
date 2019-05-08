@@ -18,18 +18,21 @@ import com.example.mediawithwear.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Fragment_listtov  extends Fragment {
+public class Fragment_list extends Fragment {
 
-    String group;
-    AdapterNext adapter;
+    String gr;
     @BindView(R.id.recyc_vp)
     RecyclerView recyc;
 
+    AdapterNext adapter;
 
-    public static Fragment newInstance(String s) {
-        Fragment_listtov listtov= new Fragment_listtov();
-        listtov.group = s;
-        return listtov;
+
+   public static Fragment newInstance(String s) {
+
+        Fragment_list fr = new Fragment_list();
+        fr.gr= s;
+        return fr;
+
     }
 
     @Nullable
@@ -38,9 +41,8 @@ public class Fragment_listtov  extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main2,container,false);
         ButterKnife.bind(this,view);
         recyc.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new AdapterNext(App.dm.getContForGroup(group));
+        adapter = new AdapterNext(App.dm.getContForGroup(gr));
         recyc.setAdapter(adapter);
-
         return view;
     }
 }
